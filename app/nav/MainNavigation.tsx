@@ -18,9 +18,7 @@ function MainNavigation() {
             <Stack.Screen name="LoginScreen"
                 options={{
                     title: 'Login',
-
                 }}
-
                 component={LoginScreen} />
             <Stack.Screen
                 name="ItemListScreen"
