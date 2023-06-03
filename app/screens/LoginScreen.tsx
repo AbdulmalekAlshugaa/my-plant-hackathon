@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import TextInputReactPaper from '../components/TextInputReactPaper'
 import { Button } from 'react-native-paper'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import FlashMessage, { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 const LoginScreen = ({ navigation }) => {
 
@@ -18,8 +18,6 @@ const LoginScreen = ({ navigation }) => {
             setLoading(true)
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    // Signed in 
-
                     const user = userCredential.user;
                     setLoading(false)
                     navigation.navigate('ItemListScreen')
@@ -47,8 +45,7 @@ const LoginScreen = ({ navigation }) => {
                 flex: 1,
                 justifyContent: "center",
             }}>
-                <FlashMessage
-                    position="top" />
+
 
                 <Formik
                     initialValues={{ email: '', password: '' }}

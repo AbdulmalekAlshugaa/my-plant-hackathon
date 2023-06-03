@@ -1,40 +1,67 @@
 import { View, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { RouteProp } from '@react-navigation/native';
-import firebase from '../firebase/firebaseConfig';
 import AuctionItem from '../components/AuctionItem';
 import { Button } from 'react-native-paper';
 import FlashMessage, { showMessage } from "react-native-flash-message";
-import { getFirestore, collection, doc, updateDoc } from 'firebase/firestore';
+import { getFirestore, collection, doc, updateDoc, getDocs } from 'firebase/firestore';
+import firebase from '../firebase/firebaseConfig';
 const db = firebase.db
 
 
 type RootStackParamList = {
     ItemDetails: { item: any };
+    navigation: any
 };
 type ItemDetailsScreenRouteProp = RouteProp<RootStackParamList, 'ItemDetails'>;
 
 
-const ItemDetailsScreen = ({ route }: { route: ItemDetailsScreenRouteProp }) => {
+const ItemDetailsScreen = ({ route, navigation }: { route: ItemDetailsScreenRouteProp }) => {
     const data = route.params;
     const [loading, setLoading] = useState(false)
+    const [rejectedLoading, setRejectedLoading] = useState(false)
+
+
 
 
     const updateParameter = async (documentId: string, updatedData: object) => {
-        setLoading(true)
+        if (updatedData.isActive == 'active') {
+            setLoading(true)
+        } else {
+            setRejectedLoading(true)
+        }
+
+
 
         try {
             const db = getFirestore();
             const docRef = doc(db, 'ItemData', documentId);
             await updateDoc(docRef, updatedData).then(() => {
-                console.log(updatedData);
-                console.log("Document successfully updated!");
+                showMessage({
+                    message: "Success",
+                    description: "Item Updated",
+                    type: "success",
+                    icon: "success",
+                });
+
+                navigation.goBack()
                 setLoading(false)
+                setRejectedLoading(false)
             });
 
         } catch (error) {
+            showMessage
+                ({
+                    message: "Error",
+                    description: "Error updating parameter",
+                    type: "danger",
+                    icon: "danger",
+                });
+
+
             console.error('Error updating parameter:', error);
             setLoading(false)
+            setRejectedLoading(false)
         }
     };
 
@@ -42,16 +69,16 @@ const ItemDetailsScreen = ({ route }: { route: ItemDetailsScreenRouteProp }) => 
         updateParameter(data.item.id, { isActive: "active" })
     }
     const Reject = () => {
-        updateParameter(data.item.id, { isActive: 'reject' })
+        updateParameter(data.item.id, { isActive: 'rejected' })
     }
     useEffect(() => {
 
     }, [])
     return (
         <>
-            <FlashMessage
-                position="top" />
+
             <View style={styles.container} >
+                <FlashMessage position="top" />
                 <AuctionItem
                     status={data.item.isActive}
                     description={data.item.description}
@@ -62,8 +89,6 @@ const ItemDetailsScreen = ({ route }: { route: ItemDetailsScreenRouteProp }) => 
                     }
                     }
                 />
-
-
             </View>
 
             <View
@@ -72,7 +97,7 @@ const ItemDetailsScreen = ({ route }: { route: ItemDetailsScreenRouteProp }) => 
             >
 
                 <Button
-                    loading={loading}
+                    loading={rejectedLoading}
                     mode="contained" style={styles.button2} onPress={() => Reject()}>
                     Reject
                 </Button>

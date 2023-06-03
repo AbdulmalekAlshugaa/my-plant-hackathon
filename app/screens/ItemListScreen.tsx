@@ -2,12 +2,34 @@ import { View, Text, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { collection, getDocs } from "firebase/firestore";
 import firebase from '../firebase/firebaseConfig';
+import { ActivityIndicator } from 'react-native-paper';
 
 import AuctionItem from '../components/AuctionItem';
 const db = firebase.db
 
 
 const ItemListScreen = ({ navigation }) => {
+
+
+    // 
+
+    const activityIndicator = () => {
+        return (
+            <View style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                alignContent: 'center',
+                height: '100%'
+            }}>
+                <ActivityIndicator
+                    style={{ flex: 1 }}
+                    size="large"
+                    color="#0000ff" />
+            </View>
+        )
+    }
+
 
 
 
@@ -20,6 +42,14 @@ const ItemListScreen = ({ navigation }) => {
         })
         setItems(emptyArray)
     }
+    // call getCollection() when the component is on focus
+
+    navigation.addListener('focus', () => {
+        getCollection()
+    })
+
+
+
     useEffect(() => {
         getCollection()
     }, [])
@@ -32,9 +62,10 @@ const ItemListScreen = ({ navigation }) => {
 
     return (
 
-        <View>
-
-            <FlatList
+        <View style={{
+            flex: 1,
+        }}>
+            {items && items?.length == 0 ? activityIndicator() : <FlatList
                 data={items}
                 renderItem={({ item }) => (
                     <AuctionItem
@@ -50,7 +81,9 @@ const ItemListScreen = ({ navigation }) => {
                 keyExtractor={(item) => item.id}
                 scrollEnabled={true}
                 scrollEventThrottle={16}
-            />
+            />}
+
+
 
         </View>
     )
