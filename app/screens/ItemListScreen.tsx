@@ -8,7 +8,7 @@ import AuctionItem from '../components/AuctionItem';
 const db = firebase.db
 
 
-const ItemListScreen = ({ navigation }) => {
+const ItemListScreen = (navigation: any) => {
 
 
     // 
