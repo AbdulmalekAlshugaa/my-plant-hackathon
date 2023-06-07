@@ -6,37 +6,34 @@ import { Button } from 'react-native-paper'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { showMessage } from "react-native-flash-message";
 
-const LoginScreen = ({ navigation }) => {
-
+const LoginScreen = (navigation: any) => {
 
     const LoginForm = () => {
         const [loading, setLoading] = useState(false)
 
-
         const auth = getAuth();
         const onSubmitLogin = (email: string, password: string) => {
             setLoading(true)
-            signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    setLoading(false)
-                    navigation.navigate('ItemListScreen')
 
+            signInWithEmailAndPassword(auth, "admin@gmail.com", "12345678")
+                .then((userCredential) => {
+                    setLoading(false)
+                    console.log(userCredential)
+                    navigation.navigate('ItemListScreen')
 
                 })
                 .catch((error) => {
                     setLoading(false)
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
+                    console.log(error)
+
                     showMessage({
                         message: "Error",
-                        description: errorMessage,
+                        description: "Email or password is incorrect",
                         type: "danger",
                         icon: "danger",
                     });
 
 
-                    console.log(errorCode, errorMessage)
                 });
         }
 
@@ -56,6 +53,7 @@ const LoginScreen = ({ navigation }) => {
                             <TextInputReactPaper
                                 label="Email"
                                 placeholder="Email"
+                                keyboardType='email-address'
                                 onChangeText={handleChange('email')}
                                 onBlur={handleBlur('email')}
                                 value={values.email}

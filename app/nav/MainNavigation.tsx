@@ -12,8 +12,7 @@ function MainNavigation() {
             initialRouteName="LoginScreen"
             screenOptions={{
                 headerShown: true,
-            }}
-        >
+            }}>
             <Stack.Screen name="LoginScreen"
                 options={{
                     title: 'Login',
@@ -42,7 +41,8 @@ function MainNavigation() {
                 options={{
                     title: 'Item Details',
                 }}
-                component={ItemDetailsScreen} />
+                component={ItemDetailsScreen}
+            />
         </Stack.Navigator>
 
     );
