@@ -8,24 +8,13 @@ import { getFirestore, collection, doc, updateDoc, getDocs } from 'firebase/fire
 import firebase from '../firebase/firebaseConfig';
 const db = firebase.db
 
-
-type RootStackParamList = {
-    ItemDetails: { item: any };
-    navigation: any
-};
-type ItemDetailsScreenRouteProp = RouteProp<RootStackParamList, 'ItemDetails'>;
-
-
-const ItemDetailsScreen = ({ route, navigation }: { route: ItemDetailsScreenRouteProp }) => {
+const ItemDetailsScreen = ({ route, navigation }: { route: any, navigation: any }) => {
     const data = route.params;
     const [loading, setLoading] = useState(false)
     const [rejectedLoading, setRejectedLoading] = useState(false)
 
-
-
-
     const updateParameter = async (documentId: string, updatedData: object) => {
-        if (updatedData.isActive == 'active') {
+        if (updatedData?.isActive == 'active') {
             setLoading(true)
         } else {
             setRejectedLoading(true)

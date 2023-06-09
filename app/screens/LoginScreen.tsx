@@ -6,7 +6,8 @@ import { Button } from 'react-native-paper'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { showMessage } from "react-native-flash-message";
 
-const LoginScreen = (navigation: any) => {
+
+const LoginScreen = ({ navigation }: { navigation: any }) => {
 
     const LoginForm = () => {
         const [loading, setLoading] = useState(false)
@@ -19,7 +20,7 @@ const LoginScreen = (navigation: any) => {
                 .then((userCredential) => {
                     setLoading(false)
                     console.log(userCredential)
-                    navigation.navigate('ItemListScreen')
+                    navigation.navigate('FeedTaps')
 
                 })
                 .catch((error) => {

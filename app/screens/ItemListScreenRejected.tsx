@@ -8,11 +8,7 @@ import AuctionItem from '../components/AuctionItem';
 const db = firebase.db
 
 
-const ItemListScreen = (navigation: any) => {
-
-
-    // 
-
+const ItemListScreenRejected = ({ navigation }: { navigation: any }) => {
     const activityIndicator = () => {
         return (
             <View style={{
@@ -40,7 +36,11 @@ const ItemListScreen = (navigation: any) => {
         querySnapshot.docs.reverse().map(doc => {
             emptyArray.push({ id: doc.id, ...doc.data() });
         })
-        setItems(emptyArray)
+        if (emptyArray.length > 0) {
+            const filteredArray = emptyArray.filter(item => item.isActive === "rejected")
+            setItems(filteredArray)
+        }
+
     }
     // call getCollection() when the component is on focus
 
@@ -89,4 +89,4 @@ const ItemListScreen = (navigation: any) => {
     )
 }
 
-export default ItemListScreen
+export default ItemListScreenRejected

@@ -8,14 +8,14 @@ import { navigationRef } from './app/nav/RootNavigation';
 export default function App() {
     return (
         <View style={styles.container}>
+
+            <NavigationContainer
+                ref={navigationRef} >
+                <MainNavigation />
+            </NavigationContainer>
             <FlashMessage
                 position="top" />
             <StatusBar style="auto" />
-            <NavigationContainer
-                ref={navigationRef}
-            >
-                <MainNavigation />
-            </NavigationContainer>
         </View>
     );
 }

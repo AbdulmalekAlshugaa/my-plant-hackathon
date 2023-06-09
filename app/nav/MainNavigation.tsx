@@ -1,8 +1,9 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { LoginScreen, ItemListScreen, ItemDetailsScreen } from '../screens';
+import { LoginScreen, ItemListScreenAccepted, ItemDetailsScreen } from '../screens';
 import { Button } from 'react-native';
 import * as RootNavigation from './RootNavigation';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import FeedTaps from './FeedNavation';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,17 +14,20 @@ function MainNavigation() {
             screenOptions={{
                 headerShown: true,
             }}>
-            <Stack.Screen name="LoginScreen"
+            <Stack.Screen
+                name="LoginScreen"
                 options={{
                     title: 'Login',
                 }}
                 component={LoginScreen} />
             <Stack.Screen
-                name="ItemListScreen"
-                component={ItemListScreen}
+                name="FeedTaps"
+
+                component={FeedTaps}
                 options={{
                     title: 'Items',
                     headerBackVisible: false,
+                    headerShown: false,
                     headerRight: () => (
                         <Button
                             onPress={() => {
