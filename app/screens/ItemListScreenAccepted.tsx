@@ -34,7 +34,7 @@ const ItemListScreenAccepted = ({ navigation }: { navigation: any }) => {
             emptyArray.push({ id: doc.id, ...doc.data() });
         })
         if (emptyArray.length > 0) {
-            const filteredArray = emptyArray.filter(item => item.isActive === "active")
+            const filteredArray = emptyArray.filter(item => item.isActive === "active" || item.isActive === "Pending")
             setItems(filteredArray)
         }
 
@@ -62,7 +62,8 @@ const ItemListScreenAccepted = ({ navigation }: { navigation: any }) => {
         <View style={{
             flex: 1,
         }}>
-            {items && items?.length == 0 ? activityIndicator() : <FlatList
+            {items && items?.length == 0 ? activityIndicator() :
+                <FlatList
                 data={items}
                 renderItem={({ item }) => (
                     <AuctionItem

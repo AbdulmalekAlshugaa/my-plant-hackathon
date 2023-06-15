@@ -14,7 +14,7 @@ const ItemDetailsScreen = ({ route, navigation }: { route: any, navigation: any 
     const [rejectedLoading, setRejectedLoading] = useState(false)
 
     const updateParameter = async (documentId: string, updatedData: object) => {
-        if (updatedData?.isActive == 'active') {
+        if (updatedData?.isActive == 'active' || updatedData?.isActive == 'Pending') {
             setLoading(true)
         } else {
             setRejectedLoading(true)
