@@ -9,6 +9,19 @@ const db = firebase.db
 
 const ItemListScreenAccepted = ({ navigation }: { navigation: any }) => {
     const activityIndicator = () => {
+        if (items.length == 0)
+            return (
+                <View style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    alignContent: 'center',
+                    height: '100%'
+                }}>
+                    <Text>No Items</Text>
+                </View>
+            )
+        else
         return (
             <View style={{
                 flex: 1,

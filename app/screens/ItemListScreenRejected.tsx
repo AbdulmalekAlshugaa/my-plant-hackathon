@@ -10,6 +10,20 @@ const db = firebase.db
 
 const ItemListScreenRejected = ({ navigation }: { navigation: any }) => {
     const activityIndicator = () => {
+        if (items.length == 0)
+            return (
+                <View style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    alignContent: 'center',
+                    height: '100%'
+                }}>
+                    <Text>No Items</Text>
+                </View>
+            )
+        else
+
         return (
             <View style={{
                 flex: 1,
@@ -65,7 +79,8 @@ const ItemListScreenRejected = ({ navigation }: { navigation: any }) => {
         <View style={{
             flex: 1,
         }}>
-            {items && items?.length == 0 ? activityIndicator() : <FlatList
+            {items && items?.length == 0 ? activityIndicator()
+                : <FlatList
                 data={items}
                 renderItem={({ item }) => (
                     <AuctionItem
