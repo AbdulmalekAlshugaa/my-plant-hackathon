@@ -12,7 +12,7 @@ function MainNavigation() {
         <Stack.Navigator
             initialRouteName="LoginScreen"
             screenOptions={{
-                headerShown: true,
+                headerShown: false,
             }}>
             <Stack.Screen
                 name="LoginScreen"

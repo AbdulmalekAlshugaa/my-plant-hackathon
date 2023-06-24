@@ -1,92 +1,53 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { Formik } from 'formik';
-import TextInputReactPaper from '../components/TextInputReactPaper'
 import { Button } from 'react-native-paper'
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { showMessage } from "react-native-flash-message";
+import { ImageBackground } from 'react-native'
+import { COLORS, IMAGE } from '../constants/them'
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 const LoginScreen = ({ navigation }: { navigation: any }) => {
 
     const LoginForm = () => {
-        const [loading, setLoading] = useState(false)
-
-        const auth = getAuth();
-        const onSubmitLogin = (email: string, password: string) => {
-            setLoading(true)
-
-            signInWithEmailAndPassword(auth, "admin@gmail.com", "12345678")
-                .then((userCredential) => {
-                    setLoading(false)
-                    console.log(userCredential)
-                    navigation.navigate('FeedTaps')
-
-                })
-                .catch((error) => {
-                    setLoading(false)
-                    console.log(error)
-
-                    showMessage({
-                        message: "Error",
-                        description: "Email or password is incorrect",
-                        type: "danger",
-                        icon: "danger",
-                    });
-
-
-                });
-        }
-
         return (
-            <View style={{
-                flex: 1,
-                justifyContent: "center",
-            }}>
+            <TouchableOpacity >
+                <Button
+                    loading={false}
+                    style={styles.button}
+                    mode="contained">
+                    Start
+                </Button>
+            </TouchableOpacity>
 
-
-                <Formik
-                    initialValues={{ email: '', password: '' }}
-                    onSubmit={values => onSubmitLogin(values.email, values.password)}
-                >
-                    {({ handleChange, handleBlur, handleSubmit, values }) => (
-                        <View>
-                            <TextInputReactPaper
-                                label="Email"
-                                placeholder="Email"
-                                keyboardType='email-address'
-                                onChangeText={handleChange('email')}
-                                onBlur={handleBlur('email')}
-                                value={values.email}
-                            />
-                            <TextInputReactPaper
-                                label="Password"
-                                placeholder="Password"
-                                secureTextEntry
-                                onChangeText={handleChange('password')}
-                                onBlur={handleBlur('password')}
-                                value={values.password}
-                            />
-                            <TouchableOpacity onPress={handleSubmit}>
-                                <Button
-                                    loading={loading}
-                                    style={styles.button}
-                                    mode="contained" onPress={handleSubmit}>
-                                    Login
-                                </Button>
-                            </TouchableOpacity>
-
-                        </View>
-                    )}
-                </Formik>
-
-
-            </View>
         )
+
+
     }
     return (
         <View style={styles.container}>
-            {LoginForm()}
+            <ImageBackground
+                resizeMode='cover'
+                source={IMAGE.background}
+                style={styles.container}>
+
+                <View style={styles.main}>
+
+                    <LinearGradient
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 0, y: 1 }}
+                        style={{
+                            height: 400,
+                            justifyContent: 'flex-end',
+                            paddingHorizontal: 20,
+                        }}
+                        colors={[COLORS.transparent, COLORS.black]}
+                    >
+                        {LoginForm()}
+                    </LinearGradient>
+                </View>
+
+            </ImageBackground>
+
         </View>
     )
 }
@@ -97,27 +58,23 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
     },
     main: {
-        flex: 1,
-        justifyContent: "center",
-        maxWidth: 960,
-        marginHorizontal: "auto",
+        bottom: 0,
+        position: "absolute",
+        width: "100%",
     },
     title: {
         fontSize: 64,
         fontWeight: "bold",
     },
     button: {
-        backgroundColor: "#000000",
+        backgroundColor: COLORS.lime,
         borderRadius: 12,
-        margin: 10,
+        marginStart: 10,
+        marginEnd: 10,
         height: 50,
         elevation: 0,
-        shadowOpacity: 0,
-        shadowRadius: 0,
-        shadowOffset: {
-            height: 0,
-            width: 0
-        },
+        marginBottom: 50,
+
 
     },
 });

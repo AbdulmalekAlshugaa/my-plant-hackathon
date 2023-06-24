@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "my-auction-admin",
-    "slug": "my-auction-admin",
+    "name": "my-plant",
+    "slug": "my-plant",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

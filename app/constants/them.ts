@@ -56,7 +56,11 @@ export const SIZES = {
     height,
 };
 
+export const IMAGE = {
+    background: require('../../assets/background.jpg'),
+};
 
-const appTheme = { COLORS, SIZES };
+
+const appTheme = { COLORS, SIZES, IMAGE };
 
 export default appTheme;
