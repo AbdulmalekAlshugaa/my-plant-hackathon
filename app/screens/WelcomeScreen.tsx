@@ -6,12 +6,18 @@ import { COLORS, IMAGE } from '../constants/them'
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-const LoginScreen = ({ navigation }: { navigation: any }) => {
+const WelcomeScreen = ({ navigation }: { navigation: any }) => {
 
-    const LoginForm = () => {
+    const StartForm = () => {
         return (
-            <TouchableOpacity >
+
+            <TouchableOpacity onPress={
+                () => {
+                    navigation.navigate("FeedTaps")
+                }
+            } >
                 <Button
+
                     loading={false}
                     style={styles.button}
                     mode="contained">
@@ -29,9 +35,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
                 resizeMode='cover'
                 source={IMAGE.background}
                 style={styles.container}>
-
                 <View style={styles.main}>
-
                     <LinearGradient
                         start={{ x: 0, y: 0 }}
                         end={{ x: 0, y: 1 }}
@@ -42,7 +46,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
                         }}
                         colors={[COLORS.transparent, COLORS.black]}
                     >
-                        {LoginForm()}
+                        {StartForm()}
                     </LinearGradient>
                 </View>
 
@@ -79,4 +83,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginScreen
+export default WelcomeScreen

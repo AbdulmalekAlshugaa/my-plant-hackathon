@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginScreen, ItemListScreenAccepted, ItemDetailsScreen } from '../screens';
+import { WelcomeScreen, ItemDetailsScreen } from '../screens';
 import { Button } from 'react-native';
 import * as RootNavigation from './RootNavigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -10,35 +10,21 @@ const Stack = createNativeStackNavigator();
 function MainNavigation() {
     return (
         <Stack.Navigator
-            initialRouteName="LoginScreen"
+            initialRouteName="WelcomeScreen"
             screenOptions={{
                 headerShown: false,
             }}>
             <Stack.Screen
-                name="LoginScreen"
+                name="WelcomeScreen"
                 options={{
-                    title: 'Login',
+                    title: 'Welcome',
                 }}
-                component={LoginScreen} />
+                component={WelcomeScreen} />
             <Stack.Screen
                 name="FeedTaps"
 
                 component={FeedTaps}
-                options={{
-                    title: 'Items',
-                    headerBackVisible: false,
-                    headerShown: false,
-                    headerRight: () => (
-                        <Button
-                            onPress={() => {
-                                // Do something
-                                RootNavigation.navigateTo('LoginScreen');
-                            }}
-                            title="Logout"
-                            color="red"
-                        />
-                    ),
-                }}
+
             />
 
             <Stack.Screen name="ItemDetailsScreen"
