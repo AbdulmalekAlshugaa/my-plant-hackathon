@@ -18,8 +18,8 @@ function FeedTaps() {
 
             <Tab.Screen name="MyPlants"
                 options={{
-                    headerTitle: 'My Plants',
-                    tabBarLabel: 'My Plants',
+                    headerTitle: 'Recommendation',
+                    tabBarLabel: 'Recommendation',
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="flower-outline" size={32} color="green" />),
                 }}

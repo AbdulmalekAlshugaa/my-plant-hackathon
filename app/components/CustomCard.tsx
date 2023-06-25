@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native'
 import React from 'react'
-import { Card, Text } from 'react-native-paper';
+import { Avatar, Button, Card, Text } from 'react-native-paper';
 import { COLORS } from '../constants/them';
 
 

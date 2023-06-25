@@ -9,7 +9,7 @@ const headers = {
 }
 
 const apiClient = create({
-    baseURL: 'http://52.76.68.49/casia/ask',
+    baseURL: 'http://52.76.68.49/casia',
     headers: headers,
     timeout: 30000,
 });
