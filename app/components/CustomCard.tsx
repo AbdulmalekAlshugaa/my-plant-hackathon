@@ -4,7 +4,7 @@ import { Card, Text } from 'react-native-paper';
 import { COLORS } from '../constants/them';
 
 
-interface AuctionItemProps {
+interface CustomItemProps {
   description: string;
   image: string;
   price: string;
@@ -13,7 +13,7 @@ interface AuctionItemProps {
 
 }
 
-const AuctionItem = ({ description, image, price, status, OnPress }: AuctionItemProps
+const CustomCard = ({ description, image, price, status, OnPress }: CustomItemProps
 ) => {
   return (
     <View style={styles.cardContainer}>
@@ -46,7 +46,7 @@ const AuctionItem = ({ description, image, price, status, OnPress }: AuctionItem
   )
 }
 
-export default AuctionItem
+export default CustomCard
 
 const styles = StyleSheet.create({
 

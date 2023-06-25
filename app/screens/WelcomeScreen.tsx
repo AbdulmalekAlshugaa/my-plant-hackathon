@@ -10,10 +10,9 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
 
     const StartForm = () => {
         return (
-
             <TouchableOpacity onPress={
                 () => {
-                    navigation.navigate("FeedTaps")
+                    navigation.navigate("LoginScreen")
                 }
             } >
                 <Button
@@ -33,14 +32,16 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
         <View style={styles.container}>
             <ImageBackground
                 resizeMode='cover'
+                resizeMethod='resize'
                 source={IMAGE.background}
+
                 style={styles.container}>
                 <View style={styles.main}>
                     <LinearGradient
                         start={{ x: 0, y: 0 }}
                         end={{ x: 0, y: 1 }}
                         style={{
-                            height: 400,
+                            height: 500,
                             justifyContent: 'flex-end',
                             paddingHorizontal: 20,
                         }}
@@ -59,7 +60,10 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        overflow: "hidden",
+
+
+
     },
     main: {
         bottom: 0,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { WelcomeScreen, ItemDetailsScreen } from '../screens';
+import { WelcomeScreen, ItemDetailsScreen, LoginScreen, RegisterScreen } from '../screens';
 import { Button } from 'react-native';
 import * as RootNavigation from './RootNavigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 function MainNavigation() {
     return (
         <Stack.Navigator
-            initialRouteName="WelcomeScreen"
+            initialRouteName="Login"
             screenOptions={{
                 headerShown: false,
             }}>
@@ -22,9 +22,7 @@ function MainNavigation() {
                 component={WelcomeScreen} />
             <Stack.Screen
                 name="FeedTaps"
-
                 component={FeedTaps}
-
             />
 
             <Stack.Screen name="ItemDetailsScreen"
@@ -33,6 +31,20 @@ function MainNavigation() {
                 }}
                 component={ItemDetailsScreen}
             />
+            <Stack.Screen name="LoginScreen"
+                options={{
+                    title: 'Login',
+                }}
+                component={LoginScreen}
+            />
+            <Stack.Screen name="RegisterScreen"
+                options={{
+                    title: 'Register',
+                }}
+                component={RegisterScreen}
+            />
+
+
         </Stack.Navigator>
 
     );
