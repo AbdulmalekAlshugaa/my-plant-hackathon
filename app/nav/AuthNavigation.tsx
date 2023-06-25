@@ -4,11 +4,10 @@ import { Button } from 'react-native';
 import * as RootNavigation from './RootNavigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FeedTaps from './FeedNavation';
-import AuthNavigation from './AuthNavigation';
 
 const Stack = createNativeStackNavigator();
 
-function MainNavigation() {
+function AuthNavigation() {
     return (
         <Stack.Navigator
             initialRouteName="WelcomeScreen"
@@ -23,31 +22,20 @@ function MainNavigation() {
 
                 }}
                 component={WelcomeScreen} />
-            <Stack.Screen
+
+            <Stack.Screen name="LoginScreen"
                 options={{
                     headerShown: false,
-                }
-                }
-                name="FeedTaps"
-                component={FeedTaps}
-            />
-
-            <Stack.Screen name="ItemDetailsScreen"
-
-                options={{
-
-                    title: 'Item Details',
+                    title: 'Login',
                 }}
-
-                component={ItemDetailsScreen}
+                component={LoginScreen}
             />
-
-            <Stack.Screen name="AuthNavigation"
+            <Stack.Screen name="RegisterScreen"
                 options={{
                     headerShown: false,
                     title: 'Register',
                 }}
-                component={AuthNavigation}
+                component={RegisterScreen}
             />
 
 
@@ -57,4 +45,4 @@ function MainNavigation() {
     );
 }
 
-export default MainNavigation;
+export default AuthNavigation;

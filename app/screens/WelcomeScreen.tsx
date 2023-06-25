@@ -4,29 +4,40 @@ import { Button } from 'react-native-paper'
 import { ImageBackground } from 'react-native'
 import { COLORS, IMAGE } from '../constants/them'
 import { LinearGradient } from 'expo-linear-gradient';
+import { getAuthData } from '../helper/localStorage'
 
 
 const WelcomeScreen = ({ navigation }: { navigation: any }) => {
+    const [isLogged, setIsLogged] = React.useState(false)
+    const screen = isLogged ? "FeedTaps" : "LoginScreen"
+    const getAuthToken = async () => {
+        try {
+            const token = await getAuthData()
+            if (token !== null) {
+                setIsLogged(true)
+            }
+        } catch (e) {
+            // error reading value
+        }
+    }
+    React.useEffect(() => {
+        getAuthToken()
+    }, [])
 
     const StartForm = () => {
         return (
             <TouchableOpacity onPress={
-                () => {
-                    navigation.navigate("LoginScreen")
-                }
-            } >
-                <Button
 
+                () => {
+                    navigation.navigate(screen)
+                }} >
+                <Button
                     loading={false}
                     style={styles.button}
                     mode="contained">
                     Start
                 </Button>
-            </TouchableOpacity>
-
-        )
-
-
+            </TouchableOpacity>)
     }
     return (
         <View style={styles.container}>

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Formik } from 'formik';
 import TextInputReactPaper from '../components/TextInputReactPaper'
@@ -37,9 +37,10 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
 
         return (
             <View style={{
-                flex: 1,
+                flex: 0.8,
                 justifyContent: "center",
             }}>
+
                 <Formik
                     initialValues={{ userName: '', password: '' }}
                     onSubmit={values => {
@@ -109,6 +110,16 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
     }
     return (
         <View style={styles.container}>
+
+            <Image
+                style={{
+                    width: 50,
+                    height: 50,
+                    alignSelf: "center",
+                    marginTop: 100,
+                }}
+                source={require("../../assets/logo.jpeg")}
+            />
             {LoginForm()}
         </View>
     )
@@ -126,7 +137,7 @@ const styles = StyleSheet.create({
         marginHorizontal: "auto",
     },
     title: {
-        fontSize: 64,
+        fontSize: 10,
         fontWeight: "bold",
     },
     button: {

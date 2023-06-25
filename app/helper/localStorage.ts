@@ -21,6 +21,14 @@ export const storeAuthData = async (value: any) => {
 
 };
 
+export const removeAuthData = async () => {
+    try {
+        await AsyncStorage.removeItem(authKey);
+    } catch (e) {
+        // remove error
+    }
+}
+
 export const getChatData = async () => {
     try {
         const jsonValue = await AsyncStorage.getItem('my-key');
