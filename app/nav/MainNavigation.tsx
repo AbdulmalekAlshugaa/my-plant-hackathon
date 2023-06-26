@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 function MainNavigation() {
     return (
         <Stack.Navigator
-            initialRouteName="WelcomeScreen"
+            initialRouteName="FeedTaps"
             screenOptions={{
                 headerShown: true,
             }}>

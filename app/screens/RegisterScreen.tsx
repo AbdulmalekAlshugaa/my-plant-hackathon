@@ -13,7 +13,7 @@ const RegisterScreen = ({ navigation }: { navigation: any }) => {
     const [loading, setLoading] = useState(false)
     const LoginForm = () => {
         const submitLoginParam = async (values: any) => {
-            console.log(values)
+      
 
             setLoading(true)
             const response = await AuthApi.createAccount(values.userName, values.password, values.firstName, "NULL", "ADMIN@MAIL.COM");

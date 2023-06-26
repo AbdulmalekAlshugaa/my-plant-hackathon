@@ -13,15 +13,13 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
     const [loading, setLoading] = useState(false)
     const LoginForm = () => {
         const submitLoginParam = async (values: any) => {
-            console.log(values)
-
             setLoading(true)
             const response = await AuthApi.loginUsingUserNameAndPassword(values.userName, values.password);
             setLoading(false)
 
             if (response.ok) {
-                storeAuthData(response?.data?.aiToken || "")
                 navigation.navigate("FeedTaps")
+                storeAuthData(response?.data?.aiToken || "")
                 showMessage({
                     message: "Login Success",
                     type: "success",

@@ -1,9 +1,8 @@
 import React from 'react';
 import { WelcomeScreen, ItemDetailsScreen, LoginScreen, RegisterScreen, AccountScreen } from '../screens';
-import { Button } from 'react-native';
-import * as RootNavigation from './RootNavigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FeedTaps from './FeedNavation';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +35,14 @@ function AuthNavigation() {
                     title: 'Register',
                 }}
                 component={RegisterScreen}
+            />
+            <Stack.Screen
+                options={{
+                    headerShown: false,
+                }
+                }
+                name="FeedTaps"
+                component={FeedTaps}
             />
 
 
