@@ -2,9 +2,28 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import CommonItemSelection from '../components/CommonItemSelection'
 import { COLORS } from '../constants/them'
-import { removeAuthData } from '../helper/localStorage'
+import { getUserData, removeAuthData, removeChatData } from '../helper/localStorage'
+import { showMessage } from 'react-native-flash-message'
 
 const AccountScreen = ({ navigation }: { navigation: any }) => {
+    const [userName, setUserName] = React.useState("")
+
+    const getUserName = async () => {
+        try {
+            const userName = await getUserData()
+            if (userName !== null) {
+                setUserName(userName)
+            }
+
+        } catch (e) {
+            // error reading value
+        }
+    }
+
+    React.useEffect(() => {
+        getUserName()
+    }, [])
+
 
     return (
 
@@ -12,13 +31,36 @@ const AccountScreen = ({ navigation }: { navigation: any }) => {
             flex: 1,
         }}>
             <CommonItemSelection
-                title={"Abdulmalik"}
+                title={userName ? userName : "User Name"}
                 isLeftEnabled={false}
                 isRightEnabled={true}
                 icon={'face-man'}
                 size={30}
                 width={50}
                 height={50}
+                color={COLORS.black}
+            />
+            <CommonItemSelection
+                title={"Clear all session"}
+                onPress={
+                    () => {
+                        removeChatData()
+                        showMessage({
+                            message: "Chat data cleared",
+                            type: "success",
+                        });
+
+
+
+                    }
+                }
+                icon={'chat'}
+                isLeftEnabled={false}
+                isRightEnabled={true}
+
+                size={30}
+                width={30}
+                height={30}
                 color={COLORS.black}
             />
 

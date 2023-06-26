@@ -5,7 +5,7 @@ import TextInputReactPaper from '../components/TextInputReactPaper'
 import { Button } from 'react-native-paper'
 import { showMessage } from "react-native-flash-message";
 import AuthApi from '../Api/AuthApi';
-import { storeAuthData } from '../helper/localStorage';
+import { storeAuthData, storeUserData } from '../helper/localStorage';
 import { COLORS, SIZES } from '../constants/them';
 
 
@@ -18,8 +18,9 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
             setLoading(false)
 
             if (response.ok) {
-                navigation.navigate("FeedTaps")
                 storeAuthData(response?.data?.aiToken || "")
+                storeUserData(response?.data?.data?.userName || "")
+                navigation.navigate("FeedTaps")
                 showMessage({
                     message: "Login Success",
                     type: "success",

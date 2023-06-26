@@ -26,12 +26,18 @@ const ChatWithAiScreen = ({ navigation }: { navigation: any }) => {
             if (messageList && messageList.length > 0) {
                 tempChat.push(...messageList)
                 setMessages(messageList.reverse())
+            } else {
+                setMessages([])
             }
         } catch (error) {
             console.error(error)
         }
     }
 
+
+    navigation.addListener('focus', () => {
+        getMessage()
+    })
     useEffect(() => {
         getMessage()
 
