@@ -41,7 +41,7 @@ const AccountScreen = ({ navigation }: { navigation: any }) => {
                 color={COLORS.black}
             />
             <CommonItemSelection
-                title={"Clear all session"}
+                title={"Clear all sessions"}
                 onPress={
                     () => {
                         removeChatData()
