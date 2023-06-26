@@ -5,9 +5,32 @@ import MyComponent from '../components/MyPlantCard';
 import { ActivityIndicator } from 'react-native-paper';
 import { COLORS } from '../constants/them';
 
+
 const MyPlants = ({ navigation }: { navigation: any }) => {
     const [loading, setLoading] = useState(false)
     const [articles, setArticles] = useState([])
+
+    const localArray = [
+        {
+            "image": require('../../assets/heart_1.jpg'),
+
+        },
+        {
+            "image": require('../../assets/heart_2.jpg'),
+
+        },
+        {
+            "image": require('../../assets/leaves_3.jpg'),
+
+        },
+        {
+            "image": require('../../assets/nature_4.jpg'),
+
+        }
+    ]
+
+    // lest merge the two array
+
 
     const activityIndicator = () => {
         if (articles.length == 0)
@@ -32,11 +55,13 @@ const MyPlants = ({ navigation }: { navigation: any }) => {
         setLoading(true)
         const response = await api.getRecommendationCassias()
         setArticles(response.data.articles)
+
         setLoading(false)
     }
 
 
     useEffect(() => {
+
         getRecommendationCassiasApi();
 
     }, []);
@@ -46,10 +71,10 @@ const MyPlants = ({ navigation }: { navigation: any }) => {
         <View style={{
             flex: 1,
         }}>
-            {articles && articles?.length == 0 ? activityIndicator() :
+            {loading ? activityIndicator() :
                 <FlatList
                     data={articles}
-                    renderItem={({ item }) => (
+                    renderItem={({ item, index }) => (
                         <MyComponent
                             created_at={item.created_at}
                             onPress={() => {
@@ -60,7 +85,7 @@ const MyPlants = ({ navigation }: { navigation: any }) => {
                             }
                             title={item.title}
                             description={item.short_description}
-                            image={item.image_s3_uri}
+                            image={localArray[index].image}
                         />
                     )}
                     keyExtractor={(item) => item.id}

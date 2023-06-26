@@ -18,7 +18,9 @@ const MyComponent = ({
             marginBottom: 10,
 
         }}>
-        <Card.Cover source={{ uri: image }} />
+        <Card.Cover
+            resizeMode='cover'
+            source={image} />
         <Card.Content>
             <Title
                 style={{
