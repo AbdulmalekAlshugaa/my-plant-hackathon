@@ -48,7 +48,12 @@ const ChatWithAiScreen = ({ navigation }: { navigation: any }) => {
         const random = min + (Math.random() * (max - min));
         try {
             const response: any = await MyPlant.postQuestionByCohere(model, message);
-            const answer = response.data.answer
+            let answer = ''
+            if (response?.data && response?.data?.answer) {
+                answer = response?.data?.answer
+            } else {
+                answer = 'Server error or Ai model not trained'
+            }
             setIsTyping(false)
             setMessages(previousMessages => {
                 const newMessage = {
